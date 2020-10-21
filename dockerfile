@@ -1,9 +1,9 @@
 FROM python:3.8
 
-WORKDIR /code
+WORKDIR /src
 
-# COPY ...textfiles
+COPY home /src/home
 
-COPY . .
+COPY app.py /src
 
-CMD ["python", "./app.py"]
+CMD ["python", "./src/app.py"]

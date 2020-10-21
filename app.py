@@ -32,7 +32,7 @@ def main():
     local_ip_address = s.getsockname()[0]
 
     with open(outputFile, 'w') as f:
-        f.write(f'Files: {fileNamesString}\nLongest file: {maxFile} with {wordMax} words.\nipaddress: {local_ip_address}')
+        f.write(f'Files: {fileNamesString}\nLongest File: {maxFile} with {wordMax} words.\nIP Address: {local_ip_address}')
         f.close()
 
 if __name__ == '__main__':
