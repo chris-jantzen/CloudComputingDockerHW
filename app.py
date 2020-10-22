@@ -14,9 +14,11 @@ def main():
     # Find Longest File
     wordMax = -1
     maxFile = ''
+    totalWords = 0
     for i in myFiles:
         f = open(i, 'r')
         wordCount = getWordCount(f.read())
+        totalWords += wordCount
         if wordMax < wordCount:
             maxFile = i
             wordMax = wordCount
@@ -32,7 +34,8 @@ def main():
     local_ip_address = s.getsockname()[0]
 
     with open(outputFile, 'w') as f:
-        f.write(f'Files: {fileNamesString}\nLongest File: {maxFile} with {wordMax} words.\nIP Address: {local_ip_address}')
+        print(f'Files: {fileNamesString}\nTotal Words: {totalWords} in the {len(myFiles)} files.\nLongest File: {maxFile} with {wordMax} words.\nIP Address: {local_ip_address}')
+        f.write(f'Files: {fileNamesString}\nTotal Words: {totalWords} in the {len(myFiles)} files.\nLongest File: {maxFile} with {wordMax} words.\nIP Address: {local_ip_address}')
         f.close()
 
 if __name__ == '__main__':
