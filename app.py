@@ -15,27 +15,31 @@ def main():
     wordMax = -1
     maxFile = ''
     totalWords = 0
-    for i in myFiles:
+    wordMapToFile = {}
+    for i, n in zip(myFiles, fileNames):
         f = open(i, 'r')
         wordCount = getWordCount(f.read())
         totalWords += wordCount
+        wordMapToFile[n] = wordCount
         if wordMax < wordCount:
             maxFile = i
             wordMax = wordCount
         f.close()
 
     # Find output file and prepare file names text
-    outputFile = './home/output/' + listdir('./home/output')[0]
-    fileNamesString = reduce(lambda acc, curr: acc + f'{curr}, ', fileNames, '')[: -2]
+    outputFilePath = './home/output/' + listdir('./home/output')[0]
+    fileNamesString = reduce(lambda acc, curr: acc + f'{curr} ({wordMapToFile[curr]} words), ', fileNames, '')[: -2]
 
     # Get IP Address
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     s.connect(('8.8.8.8', 1))
     local_ip_address = s.getsockname()[0]
 
-    with open(outputFile, 'w') as f:
-        print(f'Files: {fileNamesString}\nTotal Words: {totalWords} in the {len(myFiles)} files.\nLongest File: {maxFile} with {wordMax} words.\nIP Address: {local_ip_address}')
-        f.write(f'Files: {fileNamesString}\nTotal Words: {totalWords} in the {len(myFiles)} files.\nLongest File: {maxFile} with {wordMax} words.\nIP Address: {local_ip_address}')
+    writeString = f'Files: {fileNamesString}\nTotal Words: {totalWords} in the {len(myFiles)} files.\nLongest File: {maxFile} with {wordMax} words.\nIP Address: {local_ip_address}'
+
+    with open(outputFilePath, 'w') as f:
+        print(writeString)
+        f.write(writeString)
         f.close()
 
 if __name__ == '__main__':
