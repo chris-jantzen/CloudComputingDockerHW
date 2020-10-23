@@ -36,10 +36,10 @@ def main():
     local_ip_address = s.getsockname()[0]
 
     writeString = f'Files: {fileNamesString}\nTotal Words: {totalWords} in the {len(myFiles)} files.\nLongest File: {maxFile} with {wordMax} words.\nIP Address: {local_ip_address}'
+    print(writeString)
 
     with open(outputFilePath, 'w') as f:
         # Both printing to the console and writing to the results file
-        print(writeString)
         f.write(writeString)
         f.close()
 
