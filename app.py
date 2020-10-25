@@ -39,7 +39,6 @@ def main():
     print(writeString)
 
     with open(outputFilePath, 'w') as f:
-        # Both printing to the console and writing to the results file
         f.write(writeString)
         f.close()
 
